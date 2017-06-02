@@ -1,6 +1,6 @@
 # \<condensation-element\>
 
-condensation animatiion - hydrolysis reversed
+maltose-element animation
 
 ## Install the Polymer-CLI
 
