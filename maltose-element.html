@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../lrndesign-animationctrl/lrndesign-animationctrl.html">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
 
 <!--
 `maltose-element`
@@ -21,6 +23,11 @@
         text-align: center;
       }
     </style>
+    
+    <lrndesign-animationctrl>
+      <lrndesign-animationctrl-button name="play" icon="media"></lrndesign-animationctrl-button>
+      <lrndesign-animationctrl-button name="replay" icon="media"></lrndesign-animationctrl-button>
+    </lrndesign-animationctrl>
     <h1>Condensation Synthesis of Maltose</h1>
     <svg id="hexagons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 469.53 169.5">
     <title>Maltose-Sucrose-1</title>
@@ -108,13 +115,15 @@
       is: 'maltose-element',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'maltose-element',
+        tl: {
+          type: Object
         },
       },
+      
+      listeners: {
+      },
 
-  ready: function() {
+      ready: function() {
         var root = this;
         var tl = new TimelineMax();
         var svg = this.$$('#hexagons');
@@ -173,7 +182,20 @@
           y: "+=10",
           ease: Power2.easeOut
         });
+
+        tl.pause();
          
+        // listen for button clicks and play and pause the animation
+        this.$$('lrndesign-animationctrl').addEventListener('lrndesign-animationctrl-click', function(e) {
+          var name = e.detail.button;
+          if (name === 'play') {
+            tl.play();
+          }
+          if (name === 'replay') {
+            tl.progress(0);
+            tl.pause();
+          }
+        });
   }
     });
   </script>
