@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../lrndesign-animationctrl/lrndesign-animationctrl.html">
 <link rel="import" href="../greensock-cdn/greensock-cdn.html">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 
 <!--
@@ -18,9 +19,16 @@
         display: block;
         border: 5px solid var(--maltose-element-bg-color);
       }
-      h1 {
-        font-size: 2em;
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Open Sans', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #6D6E71;
         text-align: center;
+      }
+
+      p { 
+        font-family: 'Open Sans', sans-serif;
       }
     </style>
     
@@ -28,7 +36,7 @@
       <lrndesign-animationctrl-button name="play" icon="play"></lrndesign-animationctrl-button>
       <lrndesign-animationctrl-button name="replay" icon="replay"></lrndesign-animationctrl-button>
     </lrndesign-animationctrl>
-    <h1>Condensation Synthesis of Maltose</h1>
+    <h1>Maltose</h1>
     <svg id="hexagons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 469.53 169.5">
     <title>Maltose-Sucrose-1</title>
     <g id="glucosehexright">
@@ -126,6 +134,7 @@
       ready: function() {
         var root = this;
         var tl = new TimelineMax();
+        var tl2 = new TimelineMax();
         var svg = this.$$('#hexagons');
         var ohleft = svg.getElementById('ohleft');
         var h20 = svg.getElementById('h20');
@@ -148,52 +157,55 @@
           x: "+=25",
           ease: Power2.easeOut
         })
-        tl.to([hright], 1, {
+        .to([hright], 1, {
           y: "+=50",
           x: "-=25",
           ease: Power2.easeOut
         })
-        tl.to([ohleft,hright], 1, {
+        .to([ohleft,hright], 1, {
           x: "+=200",
           y: "-=60",
           ease: Power2.easeOut,
           alpha: 0
         })
-        tl.to([h20], .1, {
+        .to([h20], .5, {
           x: "-=10",
         })
         .to([h20, maltosecenter], .5, {
           alpha: 1
         })
-        tl.to([glucoseleft,glucoseright], .3, {
-           x:"-=100",
+        .to([glucoseleft,glucoseright], .5, {
           alpha: 0
         })
-        tl.to([glucosehexleft], .5, {
+        .to([glucosehexleft], .5, {
           x: "-=30",
           ease: Power2.easeOut,
-        })
-        tl.to([glucosehexright], .5, {
+        }, 3)
+        .to([glucosehexright], 1, {
           x: "-=110",
           ease: Power2.easeOut,
-        })
-        tl.to([oright], .5, {
+        }, 3)
+        .to([oright], 1, {
           x: "-=105",
           y: "+=10",
           ease: Power2.easeOut
-        });
+        }, 3);
 
         tl.pause();
+        tl2.pause();
          
         // listen for button clicks and play and pause the animation
         this.$$('lrndesign-animationctrl').addEventListener('lrndesign-animationctrl-click', function(e) {
           var name = e.detail.button;
           if (name === 'play') {
             tl.play();
+            tl2.play();
           }
           if (name === 'replay') {
             tl.progress(0);
+            tl2.progress(0);
             tl.pause();
+            tl2.pause();
           }
         });
   }
