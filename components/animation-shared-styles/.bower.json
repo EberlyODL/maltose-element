@@ -1,0 +1,24 @@
+{
+  "name": "animation-shared-styles",
+  "main": "animation-shared-styles.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "animation-shared-styles": "EberlyODL/animation-shared-styles#master"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^6.0.0-prerelease.5",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/EberlyODL/animation-shared-styles",
+  "_release": "5001b29e68",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "5001b29e68b9459dcc5ee736d258fea2ebc7735d"
+  },
+  "_source": "https://github.com/EberlyODL/animation-shared-styles.git",
+  "_target": "master",
+  "_originalSource": "EberlyODL/animation-shared-styles"
+}
